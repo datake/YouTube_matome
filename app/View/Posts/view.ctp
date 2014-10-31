@@ -9,12 +9,16 @@
  
 <ul>
 	<!--postにcommentがついてくる-->
-<?php foreach ($post['Comment'] as $comment): ?>
-<!--<li><?php echo h($comment['body']) ?> by <?php echo h($comment['commenter']); ?></li>-->
+<?php foreach ((array)$post['Comment'] as $comment): ?>
+
 <li id="comment_<?php echo h($comment['id']); ?>">
 <?php echo h($comment['body']) ?> by <?php echo h($comment['commenter']); ?>
 <?php
-echo $this->Html->link('Remove', '#', array('class'=>'delete', 'data-comment-id'=>$comment['id']));
+echo $this->Html->link('Edit(工事中)',array('controller'=>'comments','action'=>'edit',$comment['id']));
+?>
+
+<?php
+echo $this->Html->link('Remove', '#', array('class'=>'delete', 'data-comment-id'=>$comment['id'],$comment['post_id']));
 ?>
 </li>
 
@@ -31,6 +35,19 @@ echo $this->Form->input('commenter');
 echo $this->Form->input('body', array('rows'=>3));
 echo $this->Form->input('Comment.post_id', array('type'=>'hidden', 'value'=>$post['Post']['id']));
 echo $this->Form->end('post comment');
+?>
+
+
+<h2>Edit Comment</h2>
+<?php
+echo $this->Form->create('Comment', array('action'=>'edit'));
+echo $this->Form->input('commenter');
+echo $this->Form->input('id');//表示されない？
+echo $this->Form->input('post_id');
+echo $this->Form->input('created');
+echo $this->Form->input('body', array('rows'=>3));
+/*echo $this->Form->input('Comment.post_id', array('type'=>'hidden', 'value'=>$post['Post']['id']));*/
+echo $this->Form->end('edit comment');
 ?>
 
 <script>

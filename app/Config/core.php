@@ -222,12 +222,14 @@
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', 'DYhG93b0qyJfIxfs2guVoUubWwvniR2G0FgaC9mi');
+	//変更　http://www.phpbook.jp/cakephp/install/index1.html
+	Configure::write('Security.salt', 'osdfhvosdovusbivenmbvsdisdbnb');
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.
  */
-	Configure::write('Security.cipherSeed', '76859309657453542496749683645');
+	//変更　http://www.phpbook.jp/cakephp/install/index1.html
+	Configure::write('Security.cipherSeed', '2308457230570329570238750923709583249234857');
 
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).

@@ -31,4 +31,39 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
+	//http://www.moonmile.net/blog/archives/4855
+	public $components = array(
+        'Session',
+        'Auth' => array(
+            // ログイン後に /Posts/index へジャンプ
+            'loginRedirect' => array('controller' => 'posts', 'action' => 'index'),
+            // ログアウト後に /Pages/home へジャンプ
+            'logoutRedirect' => array('controller' => 'pages', 'action' => 'display', 'home'))
+        );
+ 
+    public function beforeFilter() {
+        // 各コントローラーの index と view を有効にする
+        $this->Auth->allow('index', 'view');
+    }
+
+
+/*
+	//Authコンポーネント(http://d.hatena.ne.jp/pospome/20130810/1376132512)
+	public $helpers = array('Html', 'Form', 'Session');
+	public $components = array(
+		'Session', 
+		'Auth' => array(
+			'loginAction' => array('controller' => 'users','action' => 'login'), //ログインを行なうaction
+                       'loginRedirect' => array('controller' => 'users', 'action' => 'index'), //ログイン後のページ
+                       'logoutRedirect' => array('controller' => 'users', 'action' => 'login'), //ログアウト後のページ
+			'authError'=>'ログインして下さい。',
+			'authenticate' => array(
+            	            'Form' => array(
+                	        'userModel' => 'User', //ユーザー情報のモデル
+                               'fields' => array('username' => 'name','password'=>'password')
+                            )
+                       )
+		)
+	);*/
 }
