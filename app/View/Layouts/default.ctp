@@ -25,6 +25,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<title>
 		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
+		<?php ?>
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
@@ -35,15 +36,19 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+	
 	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>-->
 </head>
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link('Home', '/'); ?></h1>
+			<h1><?php echo $this->Html->link('Home', '/'); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo h($auth->user('username')); ?> さん、こんにちは&nbsp;&nbsp;&nbsp;<a href="/cakephp-blog/Users/logout">logout</a></h1>
+			<!--<h2>default.ctp container headerh2</h2>-->
 		</div>
 		<div id="content">
-
+			<!--<h2>default.php content </h2>-->
 			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>

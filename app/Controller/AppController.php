@@ -43,10 +43,13 @@ class AppController extends Controller {
         );
  
     public function beforeFilter() {
-        // 各コントローラーの index と view を有効にする
+        
+        //indexとviewアクションでログインを必要としないようにする＝サイトに登録していない人がみれる
         $this->Auth->allow('index', 'view');
+        // 認証コンポーネントをViewで利用可能にしておく
+        $this->set('auth',$this->Auth);
     }
-
+    //$this->set("referer",$this->referer());
 
 /*
 	//Authコンポーネント(http://d.hatena.ne.jp/pospome/20130810/1376132512)

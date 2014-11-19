@@ -14,7 +14,7 @@ class CommentsController extends AppController {
         if ($this->request->is('post')) {
             if ($this->Comment->save($this->request->data)) {
                 $this->Session->setFlash('Success!');
-                //postsのviewにpostsのidをわたす
+                //postsのviewにpostsのidをわたす。次の一行によってたとえば/posts/view/20でお気に入り登録されたときに一瞬/comments/addにきてまた/posts/view/20にaddされた状態で返される
                 $this->redirect(array('controller'=>'posts','action'=>'view',$this->data['Comment']['post_id']));
             } else {
                 $this->Session->setFlash('failed!');
@@ -54,13 +54,21 @@ class CommentsController extends AppController {
             //ユーザがデータを編集してそのフォームがPOSTされた時の処理、まずデータの保存をする。
             
             if ($this->Comment->save($this->request->data)) {
+
                 $this->Session->setFlash('success!');
-               
+              //お気に入りはこれでよかったのになんでこれでだめ？ $this->redirect(array('controller'=>'posts','action'=>'view',$this->data['Comment']['post_id']));
+                //11/17 test
+                 //$this->redirect(array('controller'=>'posts','action'=>'view',$this->data['Comment']['post_id']));
+
                 //下のredirectでは/posts/view/$コメントのid  にリダイレクトされる。
                 ///posts/view/$動画idにリダイレクトしたい
                //$this->redirect(array('controller'=>'posts','action'=>'view',$this->Comment->id));
                 //暫定的にホームにリダイレクトするようにしとく 
-                $this->redirect(array('controller'=>'posts')); 
+               // $this->redirect(array('controller'=>'posts')); 
+
+                //元のページへリダイレクとさせようとしたがうまくいかない
+                
+                $this->redirect(Router::url($this->referer(),true));
             } else {
                 $this->Session->setFlash('failed!');
             }

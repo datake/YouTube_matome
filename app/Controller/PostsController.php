@@ -22,6 +22,10 @@ class PostsController extends AppController{
 	public function view($id=null){
 		$this->Post->id=$id;
 		$this->set('post',$this->Post->read());
+       
+        //test11/13
+        //$this->set('post', $this->Post->find('all'));
+        //$this->set('history', $this->History->find('all'));
 
 	}
 

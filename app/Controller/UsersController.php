@@ -8,13 +8,24 @@ App::uses('AppController', 'Controller');
 class UsersController extends AppController {
 
 
+
+
+//http://www.moonmile.net/blog/archives/4855
+//http://book.cakephp.org/2.0/ja/tutorials-and-examples/blog-auth-example/auth.html
+ 
+ public function beforeFilter() {
+        parent::beforeFilter();
+        // ユーザー自身による登録とログアウトを許可する
+        $this->Auth->allow('add');
+    }
 //http://www.moonmile.net/blog/archives/4855
     /*
   ログイン*/
 public function login() {
     if ($this->request->is('post')) {
         if ($this->Auth->login()) {
-            $this->redirect($this->Auth->redirect());
+            //$this->redirect($this->Auth->redirect());
+             $this->redirect(array('controller'=>'posts','action'=>'index'));
         } else {
             $this->Session->setFlash(__('Invalid username or password, try again'));
         }
@@ -28,12 +39,7 @@ public function logout() {
     $this->redirect($this->Auth->logout());
 }
  
-//http://www.moonmile.net/blog/archives/4855
- public function beforeFilter() {
-        parent::beforeFilter();
-        // ユーザー自身が登録できるようにする
-        $this->Auth->allow('add');
-    }
+
 /**
  * index method
  *
@@ -53,6 +59,7 @@ public function logout() {
  */
     public function view($id = null) {
         if (!$this->User->exists($id)) {
+            //__('文字列')はグローバル定数で国際化に利用
             throw new NotFoundException(__('Invalid user'));
         }
         $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
@@ -119,5 +126,15 @@ public function logout() {
         }
         $this->Session->setFlash(__('User was not deleted'));
         $this->redirect(array('action' => 'index'));
+    }
+
+
+
+
+     //履歴について  
+    public function history($id=null){
+        $this->User->id=$id;
+        $this->set('user',$this->User->read());
+
     }
 }
