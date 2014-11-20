@@ -21,6 +21,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8"> 
 	<?php echo $this->Html->charset(); ?>
 	<title>
 		<?php echo $cakeDescription ?>:
@@ -40,11 +41,24 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 	<!--<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
 	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>-->
+	 <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
 </head>
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link('Home', '/'); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo h($auth->user('username')); ?> さん、こんにちは&nbsp;&nbsp;&nbsp;<a href="/cakephp-blog/Users/logout">logout</a></h1>
+			<h1><?php echo $this->Html->link('Home', '/'); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<?php if ($auth->user('username')){
+							echo h($auth->user('username'));?>
+							 さんでloginしています。&nbsp;&nbsp;&nbsp;
+							　<a href="/cakephp-blog/Users/logout">logoutはこちら</a></h1>
+
+						<?php 
+					} elseif (!($auth->user('username'))) {?>
+							
+							 まだloginしていません。&nbsp;&nbsp;&nbsp;
+							<a href="/cakephp-blog/Users/login">loginはこちら</a></h1>
+					<?php 
+					}?>
 			<!--<h2>default.ctp container headerh2</h2>-->
 		</div>
 		<div id="content">

@@ -105,3 +105,8 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+CakeLog::config('db', array(
+  'engine' => 'FileLog',
+  'types' => array(),
+  'file' => 'db',
+));

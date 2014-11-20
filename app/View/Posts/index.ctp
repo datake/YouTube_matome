@@ -1,5 +1,20 @@
 <!--//こんにちは???さんの処理 http://www.moonmile.net/blog/archives/4858-->
-
+ <style>
+        body {
+            text-align:center;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li.movie {
+            float:left;
+            width:120px;
+            padding:10px;
+        }
+    </style>
 
 
    <h2>Videos</h2>
@@ -28,9 +43,9 @@
             </li>
         </ul>
     -->
-    <ul style="list-style:none;">
+    <ul >
     <?php foreach ($posts as $post) : ?>
-    <li id="post_<?php echo h($post['Post']['id']); ?>">
+    <li id="post_<?php echo h($post['Post']['id']); ?>" class="movie">
     <img src="http://img.youtube.com/vi/<?php echo h($post['Post']['URL']); ?>/3.jpg" alt="alt here..." />
     
     <?php
@@ -38,6 +53,7 @@
     //    echo h($post['Post']['title']);
     echo $this->Html->link($post['Post']['title'],'/posts/view/'.$post['Post']['id']);;
     ?>
+    <br>
     <?//php echo h($post['Post']['URL']);?>
     <?php //echo h($post['Post']['created']);?>
     <?php echo $this->Html->link('編集',array('action'=>'edit',$post['Post']['id']));?>
