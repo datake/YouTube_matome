@@ -112,7 +112,7 @@ echo("error,wrong liked condition ");
 <?php echo h($comment['body']) ?> by <?php echo h($comment['commenter']); ?>
 <!--commenterにはuserのidをいれるようにした。コメント者は非公開にしておく-->
 <?php
-echo $this->Html->link('Edit(工事中)',array('controller'=>'comments','action'=>'edit',$comment['id']));
+echo $this->Html->link('Edit',array('controller'=>'comments','action'=>'edit',$comment['id']));
 ?>
 
 <?php

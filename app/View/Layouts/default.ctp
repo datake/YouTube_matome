@@ -46,20 +46,31 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link('Home', '/'); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<h1><?php echo $this->Html->link('動画まとめ', '/'); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<?php if ($auth->user('username')){
 							echo h($auth->user('username'));?>
 							 さんでloginしています。&nbsp;&nbsp;&nbsp;
-							　<a href="/cakephp-blog/Users/logout">logoutはこちら</a></h1>
+							　<a href="/video-blog/Users/logout">logoutはこちら</a></h1>
 
 						<?php 
 					} elseif (!($auth->user('username'))) {?>
 							
-							 まだloginしていません。&nbsp;&nbsp;&nbsp;
-							<a href="/cakephp-blog/Users/login">loginはこちら</a></h1>
-					<?php 
-					}?>
-			<!--<h2>default.ctp container headerh2</h2>-->
+						 							<a href="/video-blog/Users/login">login</a>
+<?php }?>
+<!--form action="cgi-bin/abc.cgi" method="post">-->
+&nbsp;
+
+<input class="search_input" type="search" size="20">  
+&nbsp;
+
+<input  type ="submit" value="検索">
+<!--</form>-->
+<style>
+.search_input{
+width:150px;
+}
+</style>
+</h1>
 		</div>
 		<div id="content">
 			<!--<h2>default.php content </h2>-->
@@ -76,7 +87,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			?>
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
 
 
 	<script>

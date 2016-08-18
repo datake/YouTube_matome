@@ -1,7 +1,7 @@
 <div class="users index">
     <h2><?php echo __('Users'); ?></h2>
 <?php
-debug($users);
+//debug($users);
 ?>
 
 

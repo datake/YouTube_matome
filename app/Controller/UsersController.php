@@ -17,6 +17,7 @@ class UsersController extends AppController {
         parent::beforeFilter();
         // ユーザー自身による登録とログアウトを許可する
         $this->Auth->allow('add');
+            // $this->redirect(array('controller'=>'posts','action'=>'index'));
     }
 //http://www.moonmile.net/blog/archives/4855
     /*
@@ -76,7 +77,7 @@ public function logout() {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('The user has been saved'));
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('controller'=>'posts','action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
             }
